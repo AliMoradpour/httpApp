@@ -1,13 +1,13 @@
 import { useState } from "react";
-import "./newcomment.css";
-import axios from "axios";
 import { toast } from "react-toastify";
+import http from "../../Services/httpServices";
+import "./newcomment.css";
 
 const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
-    content: "",
+    body: "",
   });
 
   const changeHandler = (e) => {
@@ -15,19 +15,22 @@ const NewComment = ({ setComments }) => {
   };
 
   const postHandler = () => {
-    axios
-      .post("http://localhost:3001/comments", { ...comment, postId: 1 })
-      .then((res) => axios.get("http://localhost:3001/comments"))
-      .then((res) => setComments(res.data) , toast.success('New Comment Added', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        }))
+    http
+      .post("/comments", { ...comment, postId: 1 })
+      .then((res) => http.get("/comments"))
+      .then(
+        (res) => setComments(res.data),
+        toast.success("New Comment Added", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
+      )
       .catch((error) => error.message);
   };
 

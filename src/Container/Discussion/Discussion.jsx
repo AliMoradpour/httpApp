@@ -1,10 +1,10 @@
 import Comment from "../../Components/Comment/Comment";
 import FullComment from "../../Components/FullComment/FullComment";
 import NewComment from "../../Components/NewComment/NewComment";
-import { toast } from "react-toastify";
-import axios from "axios";
-import "./discussion.css";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "./discussion.css";
+import http from "../../Services/httpServices";
 
 const Discussion = () => {
   const [comments, setComments] = useState(null);
@@ -14,7 +14,7 @@ const Discussion = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/comments");
+        const { data } = await http.get("/comments");
         setComments(data);
       } catch (error) {
         setError(true);
@@ -27,7 +27,7 @@ const Discussion = () => {
     let renderValue = <div className="loader"></div>;
     if (error) {
       renderValue = <p>Fetching Data Failed :(</p>;
-      toast.error('Fetching Failed!', {
+      toast.error("Fetching Failed!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -36,7 +36,7 @@ const Discussion = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
     }
     if (comments && !error) {
       renderValue = comments.map((c) => (
@@ -59,7 +59,11 @@ const Discussion = () => {
     <main>
       <section className="commentSection">{renderComments()}</section>
       <section>
-        <FullComment commentId={commentId} />
+        <FullComment
+          commentId={commentId}
+          setComments={setComments}
+          setCommentId={setCommentId}
+        />
       </section>
       <section>
         <NewComment setComments={setComments} />

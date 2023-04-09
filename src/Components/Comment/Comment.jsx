@@ -1,6 +1,6 @@
 import "./comment.css";
 
-const Comment = ({ name, email,clicked }) => {
+const Comment = ({ name, email, clicked }) => {
   return (
     <div className="comment" onClick={clicked}>
       <p>name : {name}</p>

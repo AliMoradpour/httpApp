@@ -1,22 +1,39 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import http from "../../Services/httpServices";
 import "./fullcomment.css";
-import axios from "axios";
 
-const FullComment = ({ commentId }) => {
+const FullComment = ({ commentId, setComments, setCommentId }) => {
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
     if (commentId) {
-      axios
-        .get(`http://localhost:3001/comments/${commentId}`)
+      http
+        .get(`/comments/${commentId}`)
         .then((res) => setComment(res.data))
         .catch();
     }
   }, [commentId]);
 
-  const delteHandler = ()=>{
-    axios.delete(`http://localhost:3001/comments/${commentId}`).then(res => console.log(res.data)).catch()
-  }
+  const delteHandler = async () => {
+    try {
+      await http.delete(`/comments/${commentId}`);
+      const { data } = await http.get("/comments");
+      setComments(data);
+      setCommentId(null);
+      setComment(null);
+    } catch (error) {
+      toast.error(error.message, {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   let commentDetail = <p>Please Select Comment</p>;
 
