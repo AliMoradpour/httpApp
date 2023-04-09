@@ -8,4 +8,5 @@ main {
 }
 .commentSection {
   display: flex;
+  flex-wrap: wrapw;
 }

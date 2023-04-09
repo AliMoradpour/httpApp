@@ -5,7 +5,35 @@
   align-items: center;
   background-color: #f6f6f6;
   width: 600px;
-  height: 200px;
+  height: 250px;
   color: #4336ca;
   border-radius: 5px;
+}
+.newComment div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.newComment input,
+textarea {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 5px;
+}
+.newComment h2 {
+  margin: 15px 0;
+}
+.newComment label {
+  margin-right: 10px;
+}
+.newComment button {
+  display: block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #4336ca;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  outline: none;
 }

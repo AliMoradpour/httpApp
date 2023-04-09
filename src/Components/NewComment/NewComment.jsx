@@ -1,21 +1,42 @@
+import { useState } from "react";
 import "./newcomment.css";
+import axios from "axios";
 
-const NewComment = () => {
+const NewComment = ({ setComments }) => {
+  const [comment, setComment] = useState({
+    name: "",
+    email: "",
+    content: "",
+  });
+
+  const changeHandler = (e) => {
+    setComment({ ...comment, [e.target.name]: e.target.value });
+  };
+
+  const postHandler = () => {
+    axios
+      .post("http://localhost:3001/comments", { ...comment, postId: 1 })
+      .then((res) => axios.get("http://localhost:3001/comments"))
+      .then((res) => setComments(res.data))
+      .catch((error) => error.message);
+  };
+
   return (
     <div className="newComment">
+      <h2>Add New Comment</h2>
       <div>
-        <label>name</label>
-        <input type="text" />
+        <label className="formControl">name</label>
+        <input type="text" onChange={changeHandler} name="name" />
       </div>
       <div>
-        <label>email</label>
-        <input type="email" />
+        <label className="formControl">email</label>
+        <input type="email" onChange={changeHandler} name="email" />
       </div>
       <div>
-        <label>body</label>
-        <input type="text" />
+        <label className="formControl">body</label>
+        <textarea onChange={changeHandler} name="content"></textarea>
       </div>
-      <button>Add</button>
+      <button onClick={postHandler}>Add new comment</button>
     </div>
   );
 };
