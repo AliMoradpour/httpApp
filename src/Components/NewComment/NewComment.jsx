@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import http from "../../Services/httpServices";
 import "./newcomment.css";
+import { getAllComments, postComment } from "../../Services/Requests";
 
 const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
@@ -14,24 +14,33 @@ const NewComment = ({ setComments }) => {
     setComment({ ...comment, [e.target.name]: e.target.value });
   };
 
-  const postHandler = () => {
-    http
-      .post("/comments", { ...comment, postId: 1 })
-      .then((res) => http.get("/comments"))
-      .then(
-        (res) => setComments(res.data),
-        toast.success("New Comment Added", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        })
-      )
-      .catch((error) => error.message);
+  const postHandler = async () => {
+    try {
+      await postComment({ ...comment });
+      const { data } = await getAllComments();
+      setComments(data);
+      toast.success("New Comment Added", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   return (
@@ -47,7 +56,7 @@ const NewComment = ({ setComments }) => {
       </div>
       <div>
         <label className="formControl">body</label>
-        <textarea onChange={changeHandler} name="content"></textarea>
+        <textarea onChange={changeHandler} name="body"></textarea>
       </div>
       <button onClick={postHandler}>Add new comment</button>
     </div>

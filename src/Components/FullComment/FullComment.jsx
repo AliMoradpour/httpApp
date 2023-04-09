@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import http from "../../Services/httpServices";
 import "./fullcomment.css";
+import {
+  deleteComment,
+  getAllComments,
+  getOneComment,
+} from "../../Services/Requests";
 
 const FullComment = ({ commentId, setComments, setCommentId }) => {
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
     if (commentId) {
-      http
-        .get(`/comments/${commentId}`)
+      getOneComment(commentId)
         .then((res) => setComment(res.data))
         .catch();
     }
@@ -17,8 +20,8 @@ const FullComment = ({ commentId, setComments, setCommentId }) => {
 
   const delteHandler = async () => {
     try {
-      await http.delete(`/comments/${commentId}`);
-      const { data } = await http.get("/comments");
+      await deleteComment(commentId);
+      const { data } = await getAllComments();
       setComments(data);
       setCommentId(null);
       setComment(null);

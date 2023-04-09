@@ -3,8 +3,8 @@ import FullComment from "../../Components/FullComment/FullComment";
 import NewComment from "../../Components/NewComment/NewComment";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { getAllComments } from "../../Services/Requests";
 import "./discussion.css";
-import http from "../../Services/httpServices";
 
 const Discussion = () => {
   const [comments, setComments] = useState(null);
@@ -14,7 +14,7 @@ const Discussion = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await http.get("/comments");
+        const { data } = await getAllComments();
         setComments(data);
       } catch (error) {
         setError(true);
@@ -28,7 +28,7 @@ const Discussion = () => {
     if (error) {
       renderValue = <p>Fetching Data Failed :(</p>;
       toast.error("Fetching Failed!", {
-        position: "top-center",
+        position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,

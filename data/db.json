@@ -9,13 +9,6 @@
     },
     {
       "postId": 1,
-      "id": 2,
-      "name": "quo vero reiciendis",
-      "email": "Jayne_Kuhic@sydney.com",
-      "body": "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et"
-    },
-    {
-      "postId": 1,
       "id": 3,
       "name": "odio adipisci rerum",
       "email": "Nikita@garfield.biz",
@@ -27,69 +20,6 @@
       "name": "alias odio sit",
       "email": "Lew@alysha.tv",
       "body": "non et atque\noccaecati deserunt quas accusantium unde odit nobis qui voluptatem\nquia voluptas consequuntur itaque dolor\net qui rerum deleniti ut occaecati"
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 5
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 6
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 7
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 8
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 9
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 10
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 11
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 13
-    },
-    {
-      "name": "ali",
-      "email": "moradpour",
-      "body": "bordy",
-      "postId": 1,
-      "id": 14
     }
   ]
 }
