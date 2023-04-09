@@ -10,7 +10,7 @@
   border-radius: 5px;
   margin: 20px 0;
 }
-.fullComment button{
+.fullComment button {
   outline: none;
   margin-top: 10px;
   padding: 3px 7px;
@@ -18,4 +18,10 @@
   border-radius: 3px;
   color: red;
   background-color: #fff;
+  cursor: pointer;
+  transition: all ease-out 0.2s;
+}
+.fullComment button:hover {
+  background-color: red;
+  color: #fff;
 }

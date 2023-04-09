@@ -36,4 +36,10 @@ textarea {
   border: none;
   border-radius: 3px;
   outline: none;
+  cursor: pointer;
+  transition: all ease-out 0.2s;
+}
+.newComment button:hover {
+  background-color: #fff;
+  color: #4336ca;
 }

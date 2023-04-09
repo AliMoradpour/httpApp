@@ -14,7 +14,7 @@ const Discussion = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/comments132");
+        const { data } = await axios.get("http://localhost:3001/comments");
         setComments(data);
       } catch (error) {
         setError(true);
